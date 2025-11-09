@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import '../models/country_model.dart';
 import '../screens/detail_screen.dart';
+import '../providers/favorites_provider.dart';
 import '../utils/constrants.dart';
 
 class CountryCard extends StatelessWidget {
   final Country country;
+  final bool isFavoritesScreen;
 
-  const CountryCard({super.key, required this.country});
+  const CountryCard({
+    super.key,
+    required this.country,
+    this.isFavoritesScreen = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +121,35 @@ class CountryCard extends StatelessWidget {
                 ),
               ),
 
-              // Chevron Icon
-              Icon(
-                Icons.chevron_right_rounded,
-                color: Theme.of(context).textTheme.bodyMedium?.color,
+              // Favorite Button - Using Selector for precise rebuilds
+              Selector<FavoritesProvider, bool>(
+                selector: (context, favoritesProvider) =>
+                    favoritesProvider.isFavorite(country.cca3),
+                builder: (context, isFavorite, child) {
+                  debugPrint(
+                      '🎨 Building heart for ${country.name}: $isFavorite');
+
+                  return IconButton(
+                    icon: Icon(
+                      isFavorite
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                      color: isFavorite
+                          ? Colors.red
+                          : Theme.of(context).textTheme.bodyMedium?.color,
+                    ),
+                    onPressed: () async {
+                      debugPrint(
+                          '👆 Heart tapped for: ${country.name} (${country.cca3})');
+                      await context
+                          .read<FavoritesProvider>()
+                          .toggleFavorite(country);
+                    },
+                    tooltip: isFavorite
+                        ? 'Remove from favorites'
+                        : 'Add to favorites',
+                  );
+                },
               ),
             ],
           ),

@@ -19,6 +19,7 @@ class CountryProvider with ChangeNotifier {
 
   // Getters
   List<Country> get countries => _filteredCountries;
+  List<Country> get allCountries => _countries;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
   String get searchQuery => _searchQuery;

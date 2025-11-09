@@ -104,7 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: countryProvider.countries.length,
                           itemBuilder: (context, index) {
                             final country = countryProvider.countries[index];
-                            return CountryCard(country: country);
+                            return CountryCard(
+                                country: country, isFavoritesScreen: false);
                           },
                         ),
                       ),
