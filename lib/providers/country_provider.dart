@@ -1,8 +1,12 @@
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'package:flutter/foundation.dart';
 import '../models/country_model.dart';
 import '../services/api_service.dart';
 
 class CountryProvider with ChangeNotifier {
+  final ApiService _apiService = ApiService();
+
   List<Country> _countries = [];
   List<Country> _filteredCountries = [];
   bool _isLoading = false;
@@ -13,13 +17,13 @@ class CountryProvider with ChangeNotifier {
   // Cache for border countries to avoid repeated API calls
   final Map<String, Country?> _borderCountriesCache = {};
 
+  // Getters
   List<Country> get countries => _filteredCountries;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
   String get searchQuery => _searchQuery;
   String get selectedRegion => _selectedRegion;
 
-  // Available regions for filtering
   List<String> get regions => [
         'All',
         'Africa',
@@ -29,17 +33,19 @@ class CountryProvider with ChangeNotifier {
         'Oceania',
       ];
 
-  // Fetch countries from API
+  // Fetch all countries
   Future<void> fetchCountries() async {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
 
     try {
-      _countries = await ApiService.fetchCountries();
-      // Sort countries alphabetically
+      final List<dynamic> jsonList = await _apiService.fetchCountries();
+      _countries = jsonList.map((json) => Country.fromJson(json)).toList();
+
       _countries.sort((a, b) => a.name.compareTo(b.name));
       _applyFilters();
+
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -90,20 +96,6 @@ class CountryProvider with ChangeNotifier {
     // Check cache first
     if (_borderCountriesCache.containsKey(code)) {
       return _borderCountriesCache[code];
-    }
-
-    // Check in already loaded countries
-    try {
-      final country = _countries.firstWhere(
-        (c) => c.cca3 == code,
-      );
-      _borderCountriesCache[code] = country;
-      return country;
-    } catch (e) {
-      // If not found in loaded countries, fetch from API
-      final country = await ApiService.fetchCountryByCode(code);
-      _borderCountriesCache[code] = country;
-      return country;
     }
   }
 
