@@ -126,8 +126,7 @@ class CountryCard extends StatelessWidget {
                 selector: (context, favoritesProvider) =>
                     favoritesProvider.isFavorite(country.cca3),
                 builder: (context, isFavorite, child) {
-                  debugPrint(
-                      '🎨 Building heart for ${country.name}: $isFavorite');
+                  debugPrint('➕ Adding Like for ${country.name}: $isFavorite');
 
                   return IconButton(
                     icon: Icon(
@@ -140,7 +139,7 @@ class CountryCard extends StatelessWidget {
                     ),
                     onPressed: () async {
                       debugPrint(
-                          '👆 Heart tapped for: ${country.name} (${country.cca3})');
+                          '❤️ Heart tapped for: ${country.name} (${country.cca3})');
                       await context
                           .read<FavoritesProvider>()
                           .toggleFavorite(country);

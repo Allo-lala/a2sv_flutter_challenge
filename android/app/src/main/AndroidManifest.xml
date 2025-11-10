@@ -2,7 +2,7 @@
     <application
         android:label="a2sv_flutter_challenge"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/africa">
         <activity
             android:name=".MainActivity"
             android:exported="true"

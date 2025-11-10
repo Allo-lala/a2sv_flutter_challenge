@@ -105,7 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (context, index) {
                             final country = countryProvider.countries[index];
                             return CountryCard(
-                                country: country, isFavoritesScreen: false);
+                                key: ValueKey(country
+                                    .cca3), //  Add a unique key to each CountryCard
+                                country: country,
+                                isFavoritesScreen: false);
                           },
                         ),
                       ),

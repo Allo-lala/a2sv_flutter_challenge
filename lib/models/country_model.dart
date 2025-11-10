@@ -1,4 +1,4 @@
-/// Represents a country and its related information.
+// Represents a country and its related information.
 class Country {
   final String name;
   final String officialName;
@@ -12,7 +12,7 @@ class Country {
   final List<String> currencies;
   final List<String> borders;
   final List<String> timezones;
-  final String cca3; // ISO 3166-1 alpha-3 code
+  final String cca3;
 
   Country({
     required this.name,

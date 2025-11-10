@@ -1,4 +1,4 @@
-# a2sv_flutter_challenge
+# a2sv_challenge
 
 A new Flutter project.
 

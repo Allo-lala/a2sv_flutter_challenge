@@ -55,7 +55,7 @@ class ThemeProvider with ChangeNotifier {
         mode == ThemeMode.dark ? 'dark' : 'light',
       );
     } catch (e) {
-      debugPrint('Failed to save theme preference: $e');
+      debugPrint('Failed to save theme preference, Please try again: $e');
     }
   }
 }

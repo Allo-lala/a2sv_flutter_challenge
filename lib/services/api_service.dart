@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   final String baseUrl =
-      'https://restcountries.com/v3.1/all?fields=name,capital,region,subregion,population,area,flags';
+      'https://restcountries.com/v3.1/all?fields=name,capital,region,subregion,population,area,flags,cca3';
 
   Future<List<dynamic>> fetchCountries() async {
     try {

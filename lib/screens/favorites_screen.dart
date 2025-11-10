@@ -35,7 +35,7 @@ class FavoritesScreen extends StatelessWidget {
       ),
       body: Consumer2<CountryProvider, FavoritesProvider>(
         builder: (context, countryProvider, favoritesProvider, child) {
-          // Get all countries (not filtered) for favorites
+          // Get all countries not filtered for favorites
           final favoriteCountries = favoritesProvider.getFavoriteCountries(
             countryProvider.allCountries,
           );
@@ -60,7 +60,7 @@ class FavoritesScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: AppPadding.sm),
                     Text(
-                      'Start adding countries to your favorites by tapping the heart icon',
+                      'Start adding countries by tapping the heart icon',
                       style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),

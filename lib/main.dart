@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/country_provider.dart';
 import 'providers/theme_provider.dart';
-import 'providers/favorites_provider.dart'; // ADD THIS
-import 'screens/main_navigation.dart'; // CHANGE THIS
+import 'providers/favorites_provider.dart';
+import 'screens/main_navigation.dart';
 import 'utils/app_theme.dart';
 
 void main() async {
@@ -13,15 +13,15 @@ void main() async {
   final themeProvider = ThemeProvider();
   await themeProvider.loadThemePreference();
 
-  final favoritesProvider = FavoritesProvider(); // ADD THIS
-  await favoritesProvider.loadFavorites(); // ADD THIS
+  final favoritesProvider = FavoritesProvider();
+  await favoritesProvider.loadFavorites();
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => themeProvider),
         ChangeNotifierProvider(create: (_) => CountryProvider()),
-        ChangeNotifierProvider(create: (_) => favoritesProvider), // ADD THIS
+        ChangeNotifierProvider(create: (_) => favoritesProvider),
       ],
       child: const A2SVFlutterChallengeApp(),
     ),
@@ -36,7 +36,7 @@ class A2SVFlutterChallengeApp extends StatelessWidget {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
         return MaterialApp(
-          title: 'A2SV Flutter Challenge',
+          title: 'A2SV Challenge',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

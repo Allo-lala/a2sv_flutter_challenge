@@ -1,4 +1,4 @@
-name: a2sv_flutter_challenge
+name: a2sv_challenge
 description: A Flutter application displaying country information using REST Countries API
 publish_to: 'none'
 version: 1.0.0+1
@@ -29,6 +29,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_vibrate: ^1.0.0
 
 flutter:
   uses-material-design: true
