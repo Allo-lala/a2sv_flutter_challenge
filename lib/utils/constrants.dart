@@ -3,7 +3,7 @@ class ApiConstants {
 }
 
 class AppStrings {
-  static const String appName = 'A2SV Flutter Challenge';
+  static const String appName = 'A2SV Challenge';
   static const String searchHint = 'Search countries...';
   static const String filterByRegion = 'Filter by Region';
   static const String allRegions = 'All';
@@ -24,8 +24,8 @@ class AppStrings {
   static const String currencies = 'Currencies';
   static const String area = 'Area';
   static const String timezones = 'Timezones';
-  static const String borderCountries = 'Border Countries';
-  static const String noBorders = 'No bordering countries';
+  static const String borderCountries = '';
+  static const String noBorders = '';
   static const String notAvailable = 'N/A';
 }
 
